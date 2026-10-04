@@ -3,11 +3,11 @@ const Product = require("../models/product");
 exports.getAllProducts = async (req, res, next) => {
   try {
     const response = await Product.find();
-    // .select("title price -_id")
-    // .populate("userId", "name");
-    return res.status(201).json({
-      message: "product list ",
-      data: response,
+    res.render("shop/products", {
+      products: response,
+      path: "/product",
+      pageTitle: "Products",
+      isAutheticated: req.session,
     });
   } catch (error) {
     console.log(error);

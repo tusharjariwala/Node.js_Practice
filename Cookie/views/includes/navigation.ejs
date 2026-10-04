@@ -1,7 +1,13 @@
 <nav>
   <div>
-    <a href="/">Home</a>
-    <a href="/login">Login</a>
-    <a href="/add-product">Add Product</a>
+  <% if (isAutheticated) { %>
+   <a href="/product">Products</a>
+  <a href="/logout">Logout</a>
+<% } else { %>
+  <a href="/login">Login</a>
+  <a href="/signup">Signup</a>
+<% } %>
   </div>
 </nav>
+
+<hr />

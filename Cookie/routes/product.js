@@ -2,9 +2,11 @@ const express = require("express");
 
 const productController = require("../controllers/product");
 const productRouter = express.Router();
-productRouter.get("/", productController.getAllProducts);
-productRouter.post("/", productController.addProduct);
-productRouter.delete("/:productId", productController.deleteProduct);
-productRouter.get("/:productId", productController.getByProductId);
-productRouter.put("/:productId", productController.editProduct);
+const isAuth = require("../middleware/is-auth");
+
+productRouter.get("/", isAuth, productController.getAllProducts);
+productRouter.post("/", isAuth, productController.addProduct);
+productRouter.delete("/:productId", isAuth, productController.deleteProduct);
+productRouter.get("/:productId", isAuth, productController.getByProductId);
+productRouter.put("/:productId", isAuth, productController.editProduct);
 module.exports = productRouter;
